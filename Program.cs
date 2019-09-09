@@ -45,12 +45,36 @@ namespace recursive_binary_search
       else
       {
         Console.WriteLine("Hmmm...I don't recognize that response, please try again");
+        BinarySearch(upper, lower, guess);
       }
     }
     static void Main(string[] args)
     {
-      BinarySearch(0, 100, 50);
-
+      var lower = 0m;
+      var upper = 100m;
+      var guess = Math.Floor((lower + upper) / 2);
+      var playing = true;
+      Console.WriteLine($"Pick a number between {lower} & {upper}");
+      BinarySearch(lower, upper, guess);
+      while (playing)
+      {
+        Console.WriteLine("Do you want to play again? Y/N");
+        var input = Console.ReadLine();
+        if (input.ToLower() == "y")
+        {
+          Console.WriteLine($"Pick a number between {lower} & {upper}");
+          BinarySearch(lower, upper, guess);
+        }
+        else if (input.ToLower() == "n")
+        {
+          Console.WriteLine("Thanks for playing!");
+          playing = false;
+        }
+        else
+        {
+          Console.WriteLine("Hmmm...I don't recognize that response, please try again");
+        }
+      }
     }
   }
 }
